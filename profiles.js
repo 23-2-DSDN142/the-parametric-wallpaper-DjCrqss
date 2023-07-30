@@ -15,9 +15,9 @@ const lightOptions = {
     },
     gemOptions: {
         shadowOpacity: 45,
-        shadowX: 30,
-        shadowY: 15,
-        shadowBlur: 40,
+        shadowX: 10,
+        shadowY: 6,
+        shadowBlur: 10,
         rotation: -Math.PI / 2,
         outlines: true,
     }
@@ -36,10 +36,10 @@ const darkOptions = {
         allowInitialGem: true,
     },
     gemOptions: {
-        shadowOpacity: 45,
+        shadowOpacity: 65,
         shadowX: 0,
         shadowY: 0,
-        shadowBlur: 120,
+        shadowBlur: 50,
         rotation: -Math.PI / 2,
         outlines: true,
     }
@@ -109,6 +109,19 @@ const christmas = {
     allowInitialGem: true,
 }
 
+const goodygoodygumdrops = {
+    background: '#A0D0A8',
+    colours: [99, 36, 15, 5, 90],
+    stroke: '#C3E3C5',
+    strokeWeight: 1,
+    maxDepth: 3,
+    minPoints: 3,
+    maxPoints: 10,
+    shadowOffset: 1,
+    allowInitialGem: true,
+    allowGems: false
+}
+
 const cottonCandy = {
     background: '#fff',
     colours: [55, 89],
@@ -119,6 +132,19 @@ const cottonCandy = {
     maxPoints: 12,
     shadowOffset: 3,
     allowInitialGem: true,
+}
+
+const graveyard = {
+    background: 88,
+    colours: [0],
+    stroke: 150,                      
+    strokeWeight: 2.5,                     
+    maxDepth: 3,
+    minPoints: 3,
+    maxPoints: 10,
+    shadowOffset: 1.5,
+    allowInitialGem: false,
+    allowGems: false,
 }
 
 

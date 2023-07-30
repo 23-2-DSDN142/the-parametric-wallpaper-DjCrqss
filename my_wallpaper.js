@@ -1,14 +1,15 @@
-// LEAVE THIS UP HERE
+// Leave me 
 var darkMode = null;
 var fractalOptions;
 var gemOptions;
 
 
-//your parameter variables go here!
+// CUSTOMISATION
 // =======================================================================
-darkMode = false;
-fractalOptions = christmas;
-gemOptions = christmasGems;
+
+darkMode = false;  // comment this out for random darkMode
+// fractalOptions = graveyard;  // comment this out for default
+// gemOptions = pixelGems; // comment this out for default
 
 //  ===== or add your own custom fractalOptions and gemOptions here ======
 // fractalOptions = {
@@ -21,12 +22,14 @@ gemOptions = christmasGems;
 //     maxPoints: 10,                         // max number of points in a gem
 //     shadowOffset: 3,                       // offset of shadow from gem
 //     allowInitialGem: true,                 // allow initial gem to be drawn at max size
-//   },
+//     allowGems: false,                      // allow gems to be drawn
+//  }
+
 // gemOptions = {
 //     shadowOpacity: 45,                     // opacity of shadow from 0-100
-//     shadowX: 30,                           // x offset of shadow
-//     shadowY: 15,                           // y offset of shadow
-//     shadowBlur: 40,                        // blur of shadow
+//     shadowX: 8,                           // x offset of shadow
+//     shadowY: 6,                           // y offset of shadow
+//     shadowBlur: 10,                        // blur of shadow
 //     rotation: -Math.PI / 2,                // rotation of gems
 //     outlines: true,                        // whether to draw outlines on gems
 //   }
@@ -145,6 +148,8 @@ function drawSegment(x, y, width, height, depth, noRepeat) {
         }
         drawSegment(newX, newY, newWidth, newHeight, depth + 1);
       } else {
+        if(fractalOptions.allowGems == false) continue;
+
         circleCount++;
         const newX = x + col * width / 2 + fractalOptions.strokeWeight / 2 + 1;
         const newY = y + row * height / 2 + fractalOptions.strokeWeight / 2 + 1;

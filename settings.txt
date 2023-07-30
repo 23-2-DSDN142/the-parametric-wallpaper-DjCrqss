@@ -1,53 +1,102 @@
 You will need to fill out this file for hand in. 
-The bellow is just an example, feel free to disregard this documents contents.
+
+All the setup_wallpaper's will be the same, so you will just need to copy and paste the following
+code into the section labelled 'Customisation'
 
 
 Your final settings.txt will look something like this when you are finished:
 
 /////////////////////////////////
 
-Wallpaper 1:
+Wallpaper 1 - Day:
 
-//your parameter variables go here!
-let rect_width  = 20;
-let rect_height = 20;
-let paramter1 = 10;
-let paramter2 = true;
-let paramter3 = 50; 
-let paramter4 = 0; 
-let paramter5 = 60;
-
-function setup_wallpaper(pWallpaper) {
-  pWallpaper.output_mode(GRID_WALLPAPER);
-  pWallpaper.resolution(NINE_LANDSCAPE);
-  pWallpaper.show_guide(false); //set this to false when you're ready to print
-
-  //Grid settings
-  pWallpaper.grid_settings.cell_width  = 100;
-  pWallpaper.grid_settings.cell_height = 100;
-  pWallpaper.grid_settings.row_offset  = 50;
-}
+darkMode = false;
 
 /////////////////////////////////
 
-Wallpaper 2:
+Wallpaper 2 - Night:
 
-//your parameter variables go here!
-let rect_width  = 10;
-let rect_height = 10;
-let paramter1 = 20;
-let paramter2 = false;
-let paramter3 = 50; 
-let paramter4 = 80; 
-let paramter5 = 30;
+darkMode = true;
 
-function setup_wallpaper(pWallpaper) {
-  pWallpaper.output_mode(GRID_WALLPAPER);
-  pWallpaper.resolution(NINE_LANDSCAPE);
-  pWallpaper.show_guide(false); //set this to false when you're ready to print
+/////////////////////////////////
 
-  //Grid settings
-  pWallpaper.grid_settings.cell_width  = 100;
-  pWallpaper.grid_settings.cell_height = 100;
-  pWallpaper.grid_settings.row_offset  = 0;
-}
+Wallpaper 3 - Pixels:
+
+darkMode = false; // or true if you want some pixels turned off
+fractalOptions = pixels; 
+gemOptions = pixelGems;
+
+/////////////////////////////////
+
+Wallpaper 4 - Atlantis:
+
+darkMode = false;
+fractalOptions = atlantis;
+
+/////////////////////////////////
+
+Wallpaper 5 - Forest:
+
+darkMode = false;
+fractalOptions = forest;
+
+/////////////////////////////////
+
+Wallpaper 6 - Desert:
+
+darkMode = false;
+fractalOptions = desert;
+
+/////////////////////////////////
+
+Wallpaper 7 - Goody Goody Gumdrops:
+
+darkMode = false;
+fractalOptions = gumdrops;
+
+/////////////////////////////////
+
+Wallpaper 8 - Christmas:
+
+darkMode = false;
+fractalOptions = christmas;
+gemOptions = christmasGems;
+
+
+/////////////////////////////////
+
+Wallpaper 9 - Graveyard:
+
+darkMode = false;  // dark mode does not work here
+fractalOptions = graveyard;
+
+/////////////////////////////////
+
+Wallpaper 10 - A modern representation of minimalism:
+
+darkMode = false;
+fractalOptions = {
+    background: 88,                        // 0-100 for brightness or hexcode string
+    colours: [55, 99, 36, 85, 70, 15],     // hue of gems from 0-100
+    stroke: 150,                           // brightness of lines from 0-100
+    strokeWeight: 2.5,                     // thickness of lines
+    maxDepth: 3,                           // max recursion depth of fractal
+    minPoints: 3,                          // min number of points in a gem
+    maxPoints: 10,                         // max number of points in a gem
+    shadowOffset: 3,                       // offset of shadow from gem
+    allowInitialGem: true,                 // allow initial gem to be drawn at max size
+    allowGems: false,                      // allow gems to be drawn
+ }
+
+gemOptions = {
+    shadowOpacity: 45,                     // opacity of shadow from 0-100
+    shadowX: 8,                           // x offset of shadow
+    shadowY: 6,                           // y offset of shadow
+    shadowBlur: 10,                        // blur of shadow
+    rotation: -Math.PI / 2,                // rotation of gems
+    outlines: true,                        // whether to draw outlines on gems
+  }
+
+/////////////////////////////////
+
+
