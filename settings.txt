@@ -93,7 +93,6 @@ gemOptions = {
     shadowX: 8,                           // x offset of shadow
     shadowY: 6,                           // y offset of shadow
     shadowBlur: 10,                        // blur of shadow
-    rotation: -Math.PI / 2,                // rotation of gems
     outlines: true,                        // whether to draw outlines on gems
   }
 

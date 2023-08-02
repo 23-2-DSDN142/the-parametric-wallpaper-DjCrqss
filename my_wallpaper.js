@@ -8,7 +8,7 @@ var gemOptions;
 // =======================================================================
 
 darkMode = false;  // comment this out for random darkMode
-// fractalOptions = graveyard;  // comment this out for default
+// fractalOptions = forest;  // comment this out for default
 // gemOptions = pixelGems; // comment this out for default
 
 //  ===== or add your own custom fractalOptions and gemOptions here ======
