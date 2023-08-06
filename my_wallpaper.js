@@ -1,4 +1,4 @@
-// Leave me 
+// Always leave me here for wallpaper to use default settings if nothing is set
 var darkMode = null;
 var fractalOptions;
 var gemOptions;
@@ -64,8 +64,12 @@ function setup_wallpaper(pWallpaper) {
   pWallpaper.grid_settings.row_offset = 100;
 }
 
+/**
+ * Draws the background of the wallpaper
+ */
 function wallpaper_background() {
   let body = document.body;
+  // allow background to be a hexcode string or a brightness value
   if (typeof fractalOptions.background == 'string') {
     background(fractalOptions.background);
     body.style.backgroundColor = fractalOptions.background;
@@ -76,7 +80,9 @@ function wallpaper_background() {
 }
 
 
-
+/**
+ * Draws a single cell
+ */
 function my_symbol() { // do not rename this function. Treat this similarly to a Draw function
   angleMode(RADIANS);
   colorMode(HSB, 100);
@@ -98,18 +104,26 @@ function my_symbol() { // do not rename this function. Treat this similarly to a
 
 
 
-
-
+/**
+ * Generates a recursive segment
+ * @param {number} x x coordinate of top left corner
+ * @param {number} y y coordinate of top left corner
+ * @param {number} width width of segment
+ * @param {number} height height of segment
+ * @param {number} depth current depth of recursion
+ * @param {boolean} noRepeat whether to allow an extra recursion with no gems spawned
+ */
 function drawSegment(x, y, width, height, depth, noRepeat) {
+  // stop recursion if max depth reached or if segment is too small
   if (depth > fractalOptions.maxDepth || width < 7 || height < 7) {
     return;
   }
 
+  // allow initial gem to be drawn at max size if option is enabled
   if (random(1) > 0.85 && depth <= 1 && fractalOptions.allowInitialGem) {
     generateGem(x + width / 2, y + height / 2, width / 2, width / 4, Math.floor(random(fractalOptions.minPoints, fractalOptions.maxPoints)), gemOptions.rotation, fractalOptions.colours[Math.floor(random(0, fractalOptions.colours.length))]);
     return;
   }
-
 
   // draw boundaries shadows ( + )
   strokeWeight(fractalOptions.strokeWeight);
@@ -123,6 +137,7 @@ function drawSegment(x, y, width, height, depth, noRepeat) {
   line(x + width / 2 + fractalOptions.strokeWeight / 4, y, x + width / 2 + fractalOptions.strokeWeight / 4, y + height);
   line(x, y + height / 2 + fractalOptions.strokeWeight / 4, x + width, y + height / 2 + fractalOptions.strokeWeight / 4);
 
+  // stop recursion if no gems are allowed
   if (noRepeat) {
     return;
   }
@@ -135,8 +150,7 @@ function drawSegment(x, y, width, height, depth, noRepeat) {
       if (depth != 0) {
         recursionProb = random(1) > 0.35;
       }
-
-      if (recursionProb) { //&& !(row == 1 && col == 1 && circleCount == 0)
+      if (recursionProb) { // 65% chance of recursion
         const newX = x + col * width / 2;
         const newY = y + row * height / 2;
         const newWidth = width / 2;
@@ -147,7 +161,7 @@ function drawSegment(x, y, width, height, depth, noRepeat) {
           continue;
         }
         drawSegment(newX, newY, newWidth, newHeight, depth + 1);
-      } else {
+      } else { // 35% chance of gem
         if(fractalOptions.allowGems == false) continue;
 
         circleCount++;
@@ -161,7 +175,17 @@ function drawSegment(x, y, width, height, depth, noRepeat) {
   }
 }
 
-// creates a gem given the center, radius, inner radius, amount of sides, rotation and colour
+
+/**
+ * Generates a gem
+ * @param {number} centerX x coordinate of center
+ * @param {number} centerY y coordinate of center
+ * @param {number} radius radius of gem
+ * @param {number} innerRadius radius of inner gem panel
+ * @param {number} sides number of sides of gem
+ * @param {number} rotation rotation of gem
+ * @param {number} col hue of gem
+*/
 function generateGem(centerX, centerY, radius, innerRadius, sides, rotation, col) {
   let on = 100;
   if (darkMode) {
@@ -174,7 +198,7 @@ function generateGem(centerX, centerY, radius, innerRadius, sides, rotation, col
   }
   let angle = TWO_PI / sides;
 
-  // draw outer background and find vertical shift
+  // draw outer background and shadow and find vertical/horizontal bounds for centering
   fill(0);
   if (gemOptions.outlines) {
     stroke(col, 60, 80, on == 100 ? 100 : 3);
@@ -207,7 +231,7 @@ function generateGem(centerX, centerY, radius, innerRadius, sides, rotation, col
     }
     vertexes.push([innerX, innerY]);
   }
-  // calculate vertical shift
+  // calculate vertical and horizontal shift for centering
   let verticalShift = -1 * ((largestY - centerY) - (centerY - smallestY)) / 2;
   let horizontalShift = -1 * ((largestX - centerX) - (centerX - smallestX)) / 2;
 
@@ -272,7 +296,15 @@ function generateGem(centerX, centerY, radius, innerRadius, sides, rotation, col
   pop();
 }
 
-// Calculates the distrance between two angles including wrapping
+
+// HELPER FUNCTIONS
+
+/** 
+ * Calculates the distrance between two angles including wrapping
+ * @param {number} angle1 first angle
+ * @param {number} angle2 second angle
+ * @returns {number} distance between the two angles
+ */
 function calculateAngleDistance(angle1, angle2) {
   let distance = Math.abs(angle1 - angle2);
   if (distance > Math.PI) {
@@ -281,8 +313,16 @@ function calculateAngleDistance(angle1, angle2) {
   return distance;
 }
 
-// draws a linear gradient given starting and ending X and Y coordinates and colours
-// uses javascript's drawing context rather than p5 as it is much more efficient
+/** 
+ * draws a linear gradient given starting and ending X and Y coordinates and colours
+ * uses javascript's drawing context rather than p5 as it is much more efficient
+ * @param {number} sX starting x coordinate
+ * @param {number} sY starting y coordinate
+ * @param {number} eX ending x coordinate
+ * @param {number} eY ending y coordinate
+ * @param {p5.Color} colorS starting colour
+ * @param {p5.Color} colorE ending colour
+ */
 function linearGradient(sX, sY, eX, eY, colorS, colorE) {
   let gradient = drawingContext.createLinearGradient(
     sX, sY, eX, eY
@@ -292,8 +332,15 @@ function linearGradient(sX, sY, eX, eY, colorS, colorE) {
   drawingContext.fillStyle = gradient;
 }
 
-// draws a shadow given colour, x and y offset, blur and whether the gem is on or off
-// uses javascript's drawing context rather than p5 as it is much more efficient
+/**
+ * draws a shadow given colour, x and y offset, blur and whether the gem is on or off
+ * uses javascript's drawing context rather than p5 as it is much more efficient
+ * @param {p5.Color} colour colour of the shadow
+ * @param {number} x x offset
+ * @param {number} y y offset
+ * @param {number} blur blur radius
+ * @param {number} gemOn whether the gem is on or off
+ */
 function shadow(colour, x, y, blur, gemOn) {
   drawingContext.shadowBlur = blur;
   if (darkMode && gemOn != 100) {
