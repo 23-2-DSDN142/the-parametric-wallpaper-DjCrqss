@@ -52,7 +52,7 @@ fractalOptions = desert;
 Wallpaper 7 - Goody Goody Gumdrops:
 
 darkMode = false;
-fractalOptions = gumdrops;
+fractalOptions = goodygoodygumdrops;
 
 /////////////////////////////////
 
