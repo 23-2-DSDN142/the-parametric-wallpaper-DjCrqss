@@ -12,27 +12,26 @@ darkMode = false;  // comment this out for random darkMode
 // gemOptions = pixelGems; // comment this out for default
 
 //  ===== or add your own custom fractalOptions and gemOptions here ======
-// fractalOptions = {
-//     background: 88,                        // 0-100 for brightness or hexcode string
-//     colours: [55, 99, 36, 85, 70, 15],     // hue of gems from 0-100
-//     stroke: 150,                           // brightness of lines from 0-100
-//     strokeWeight: 2.5,                     // thickness of lines
-//     maxDepth: 3,                           // max recursion depth of fractal
-//     minPoints: 3,                          // min number of points in a gem
-//     maxPoints: 10,                         // max number of points in a gem
-//     shadowOffset: 3,                       // offset of shadow from gem
-//     allowInitialGem: true,                 // allow initial gem to be drawn at max size
-//     allowGems: false,                      // allow gems to be drawn
-//  }
+fractalOptions = {
+  background: 88,                        // 0-100 for brightness or hexcode string
+  colours: [55, 99, 36, 85, 70, 15],     // hue of gems from 0-100
+  stroke: 150,                           // brightness of lines from 0-100
+  strokeWeight: 2.5,                     // thickness of lines
+  maxDepth: 3,                           // max recursion depth of fractal
+  minPoints: 3,                          // min number of points in a gem
+  maxPoints: 10,                         // max number of points in a gem
+  shadowOffset: 3,                       // offset of shadow from gem
+  allowInitialGem: true,                 // allow initial gem to be drawn at max size
+  allowGems: false,                      // allow gems to be drawn
+}
 
-// gemOptions = {
-//     shadowOpacity: 45,                     // opacity of shadow from 0-100
-//     shadowX: 8,                           // x offset of shadow
-//     shadowY: 6,                           // y offset of shadow
-//     shadowBlur: 10,                        // blur of shadow
-//     rotation: -Math.PI / 2,                // rotation of gems
-//     outlines: true,                        // whether to draw outlines on gems
-//   }
+gemOptions = {
+  shadowOpacity: 45,                     // opacity of shadow from 0-100
+  shadowX: 8,                           // x offset of shadow
+  shadowY: 6,                           // y offset of shadow
+  shadowBlur: 10,                        // blur of shadow
+  outlines: true,                        // whether to draw outlines on gems
+}
 
 // =======================================================================
 
